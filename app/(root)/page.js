@@ -5,30 +5,37 @@ import RotatingText from "@/components/RotatingText";
 import PixelTransition from "@/components/AboutSection/PixelTransition";
 import DotGrid from "@/components/DotGrid";
 import Squares from "@/components/Squares";
-import { BBH_Bartle, Share_Tech } from "next/font/google";
+import CertificateLightbox from "@/components/CertificateLightbox";
+import ProjectSection from "@/components/ProjectSection";
+import ContactForm from "@/components/ContactForm";
 import Image from "next/image";
 import { MdEmail } from "react-icons/md";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { HiArrowSmallDown } from "react-icons/hi2";
 
-export const bbhBartle = BBH_Bartle({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-bbh-bartle",
-});
-
-export const shareTech = Share_Tech({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-share-teach",
-});
+const skills = [
+  "Laravel 11",
+  "React",
+  "Vue",
+  "JavaScript",
+  "Tailwind CSS",
+  "Bootstrap",
+  "MySQL",
+  "WebSockets",
+];
 
 export default function Home() {
   return (
     <div>
-      {/* Home Section */}
-      <section className="relative w-full h-screen overflow-hidden bg-[#060606]">
-        {/* 1. Add absolute positioning wrapper for Squares */}
-        <div className="absolute inset-0 w-full h-full  opacity-25">
+      {/* ════════════════════════════════
+          HERO SECTION
+      ════════════════════════════════ */}
+      <section
+        id="home"
+        className="relative w-full h-screen overflow-hidden bg-[#060606]"
+      >
+        {/* Animated grid background */}
+        <div className="absolute inset-0 w-full h-full opacity-20">
           <Squares
             speed={0.5}
             squareSize={40}
@@ -38,105 +45,134 @@ export default function Home() {
           />
         </div>
 
-        <div
-          id="main-section"
-          className="relative z-10 flex items-center justify-center min-h-screen h-full w-full pointer-events-none"
-        >
-          <div className="w-full h-full min-h-screen flex items-center justify-center">
-            <div className="flex flex-col gap-4 justify-center items-center pointer-events-auto">
-              {/* Image Section */}
-              <MyPhotoAvatar />
+        {/* Accent radial glow */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(251,37,118,0.12) 0%, transparent 70%)",
+          }}
+        />
 
-              {/* About */}
-              <div className="flex flex-col gap-3 justify-center items-center text-center px-4">
-                <h1
-                  className={`${bbhBartle.className} flex flex-col items-center text-accent`}
-                >
-                  <span className="text-lg sm:text-2xl">Full-stack</span>
-                  <span className="text-xl sm:text-4xl">web developer</span>
+        <div className="relative z-10 flex items-center justify-center min-h-screen pt-14 px-6 md:px-12">
+          <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-between gap-12">
+
+            {/* ── Left: text ── */}
+            <div className="flex flex-col gap-5 text-center md:text-left md:flex-1">
+              <p className="font-share text-white/40 tracking-[0.25em] text-xs uppercase">
+                Hi, I&apos;m
+              </p>
+
+              <div className="flex flex-col gap-1">
+                <h1 className="font-bartle font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-accent leading-none drop-shadow-[0_0_30px_rgba(251,37,118,0.4)]">
+                  JACK
                 </h1>
-                <div>
-                  <div
-                    className={`flex flex-wrap justify-center items-center gap-2 text-lg sm:text-2xl text-white ${shareTech.className}`}
-                  >
-                    <h1>Building, </h1>
-                    <RotatingText
-                      texts={["Fast", "Scalable", "Modern"]}
-                      mainClassName=""
-                      staggerFrom={"last"}
-                      initial={{ y: "100%" }}
-                      animate={{ y: 0 }}
-                      exit={{ y: "-120%" }}
-                      staggerDuration={0.025}
-                      splitLevelClassName="overflow-hidden p-1 sm:p-1.5 text-accent rounded btn-box w-20 sm:w-24 flex justify-center items-center backdrop-blur-xs"
-                      transition={{
-                        type: "spring",
-                        damping: 30,
-                        stiffness: 400,
-                      }}
-                      rotationInterval={2000}
-                    />
-                    <h1>web applications.</h1>
-                  </div>
-                  <p
-                    className={`max-w-md text-white/70  mt-4 text-xs font-light sm:text-base  text-balance `}
-                  >
-                    Portfolio of a full-stack web developer experienced in
-                    frontend, backend, APIs, and databases. Focused on clean
-                    code, performance, and real-world solutions.
-                  </p>
-                </div>
+                <h2 className="font-bartle text-sm sm:text-base md:text-lg text-white/50 tracking-[0.15em] uppercase">
+                  Full-Stack Web Developer
+                </h2>
+              </div>
+
+              {/* Rotating tagline */}
+              <div className="flex flex-wrap justify-center md:justify-start items-center gap-2 text-sm sm:text-base text-white font-share">
+                <span>Building,</span>
+                <RotatingText
+                  texts={["Fast", "Scalable", "Modern"]}
+                  staggerFrom="last"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden px-3 py-1 text-accent rounded btn-box w-20 sm:w-24 flex justify-center items-center"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={2000}
+                />
+                <span>web apps.</span>
+              </div>
+
+              <p className="text-white/40 text-xs sm:text-sm font-light leading-relaxed max-w-sm mx-auto md:mx-0">
+                Experienced in frontend, backend, APIs &amp; databases. Focused
+                on clean code, performance, and real-world solutions.
+              </p>
+
+              <div className="flex gap-3 justify-center md:justify-start mt-1">
+                <a
+                  href="#project"
+                  className="px-5 py-2.5 bg-accent text-white text-xs font-bold rounded btn-box hover:bg-accent/80 transition-all duration-300 font-share tracking-widest uppercase"
+                >
+                  Projects
+                </a>
+                <a
+                  href="#contact"
+                  className="px-5 py-2.5 border border-accent/60 text-accent text-xs font-bold rounded hover:bg-accent hover:text-white transition-all duration-300 font-share tracking-widest uppercase"
+                >
+                  Contact
+                </a>
               </div>
             </div>
+
+            {/* ── Right: avatar ── */}
+            <div className="flex items-center justify-center md:flex-shrink-0">
+              <MyPhotoAvatar />
+            </div>
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/25 animate-bounce">
+            <HiArrowSmallDown size={20} />
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="my-4 p-4 text-white flex flex-col md:flex-row gap-12 justify-center items-center md:justify-around w-full min-h-screen h-full overflow-hidden ">
-        <div className="flex flex-col gap-4 w-full md:w-1/2">
-          <h1
-            className={`${bbhBartle.className} text-base flex justify-center items-center md:justify-start`}
-          >
-            <strong className="text-2xl">#</strong>About Section
-          </h1>
-          <div>
-            <p className="text-sm md:text-base text-justify">
-              Hi, I’m <strong>Jack</strong>, a junior full-stack developer who
-              enjoys learning and building modern web applications. I mainly
-              work with <strong>Laravel 11</strong>, <strong>React</strong>,{" "}
-              <strong>Vue</strong>, <strong>JavaScript</strong>,
-              <strong>Bootstrap</strong>, and <strong>Tailwind CSS</strong>, and
-              I focus on improving my skills by building real projects and
-              writing clean, readable code.
-            </p>
+      {/* ════════════════════════════════
+          ABOUT SECTION
+      ════════════════════════════════ */}
+      <section
+        id="about"
+        className="py-24 px-4 md:px-10 text-white flex flex-col md:flex-row gap-16 justify-center items-center md:justify-around w-full min-h-screen overflow-hidden"
+      >
+        {/* Left — text content */}
+        <div className="flex flex-col gap-8 w-full md:w-1/2 max-w-lg">
+          {/* Section heading */}
+          <div className="flex items-center gap-3">
+            <span className="text-accent text-3xl font-black leading-none">#</span>
+            <h2 className="font-bartle text-3xl text-white">About Me</h2>
+            <div className="flex-1 h-px bg-linear-to-r from-accent/50 to-transparent" />
           </div>
 
+          <p className="text-white/65 text-sm md:text-base leading-relaxed">
+            I&apos;m <strong>Jack</strong> — a full-stack developer who turns ideas
+            into fast, functional web apps. I specialise in{" "}
+            <strong>Laravel</strong>, <strong>React</strong>,{" "}
+            <strong>Vue</strong>, and <strong>Tailwind CSS</strong>, with a
+            focus on clean code, real-world impact, and constantly levelling up.
+          </p>
+
+          {/* Tech stack */}
           <div>
-            <h3 className={`${shareTech.className} text-base`}>
-              My Certificate
-            </h3>
-            <ul className="flex gap-2 justify-start text-xs lg:text-sm ">
-              <li className=" bg-accent hover:bg-accent/90 p-1  rounded ">
-                <a
-                  href="/public/certificate/Thant Thurein Htut Vue JS Certificate.jpg"
-                  download
+            <p className="font-share text-xs text-white/35 tracking-[0.2em] uppercase mb-3">
+              Tech Stack
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="text-xs px-3 py-1 rounded-full border border-accent/25 text-white/60 hover:border-accent hover:text-white transition-colors duration-200 cursor-default"
                 >
-                  #Vue + Laravel From (Code lab)
-                </a>
-              </li>
-              <li className="  bg-accent p-1 hover:bg-accent/90  rounded">
-                <a
-                  href="/public/certificate/Thant Thurein Htut Web Design Certificate.jpg"
-                  download
-                >
-                  #Web Desgin From (Code lab)
-                </a>
-              </li>
-            </ul>
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Certificates */}
+          <div>
+            <p className="font-share text-xs text-white/35 tracking-[0.2em] uppercase mb-3">
+              Certificates — click to view
+            </p>
+            <CertificateLightbox />
           </div>
         </div>
 
+        {/* Right — photo (DO NOT TOUCH) */}
         <div className="relative flex justify-center mb-14">
           <PixelTransition
             firstContent={
@@ -147,7 +183,6 @@ export default function Home() {
                 height={250}
                 loading="eager"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                className=""
               />
             }
             secondContent={
@@ -164,84 +199,43 @@ export default function Home() {
             pixelColor="#ffff"
             once={false}
             animationStepDuration={0.4}
-            className="custom-pixel-card h-96 "
+            className="custom-pixel-card h-96"
           />
-
           <LaptopMan />
           <ShowOffMan />
         </div>
       </section>
 
-      {/* Project Section */}
-      <section className="my-4 p-4 min-h-screen  h-full w-full text-white flex flex-col gap-6 md:w-11/12 md:mx-auto">
-        <h1
-          className={`${bbhBartle.className} text-base flex justify-center items-center `}
-        >
-          <strong className="text-2xl">#</strong>Project Section
-        </h1>
-        <p className="text-justify">
-          <strong>
-            <a href="https://www.yaycha.blog" target="_self">
-              Yaycha.blog
-            </a>
-          </strong>{" "}
-          is the biggest project I’ve built so far. It’s a blogging platform
-          featuring <u>real-time</u> view counts and a notification system for
-          likes, follows, and interactions. I even integrated an{" "}
-          <u>AI title generator</u> for Bluecheck verified users. This project
-          was my first deep dive into{" "}
-          <u>complex database design and relationships.</u> It taught me so much
-          about Laravel and React, especially working with real-time data using{" "}
-          <u>WebSockets (Laravel Reverb and Echo).</u> This project truly pushed
-          my skills to the next level.
-        </p>
-        <div className={`${shareTech.className} grid lg:grid-cols-2 gap-6`}>
-          <div className="flex flex-col gap-2">
-            <h2 className="underline decoration-accent text-lg">Login Page</h2>
-            <Image
-              src="/loginPage.png"
-              alt=""
-              width={1000}
-              height={1000}
-              className="w-full border border-dashed border-accent rounded"
-            />
+      {/* ════════════════════════════════
+          PROJECT SECTION
+      ════════════════════════════════ */}
+      <section
+        id="project"
+        className="py-24 px-4 md:px-10 min-h-screen w-full text-white flex flex-col gap-10 md:w-11/12 md:mx-auto"
+      >
+        <div>
+          <div className="flex items-center gap-3 mb-2">
+            <span className="text-accent text-3xl font-black leading-none">#</span>
+            <h2 className="font-bartle text-3xl text-white">Projects</h2>
+            <div className="flex-1 h-px bg-linear-to-r from-accent/50 to-transparent" />
           </div>
-          <div className="flex flex-col gap-2">
-            <h2 className="underline decoration-accent text-lg">Home Page</h2>
-            <Image
-              src="/homePage.png"
-              alt=""
-              width={1000}
-              height={1000}
-              className="w-full border border-dashed border-accent rounded"
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <h2 className="underline decoration-accent text-lg">Create Page</h2>
-            <Image
-              src="/createPage.png"
-              alt=""
-              width={1000}
-              height={1000}
-              className="w-full border border-dashed border-accent rounded"
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <h2 className="underline decoration-accent text-lg">Admin Page</h2>
-            <Image
-              src="/adminPage.png"
-              alt=""
-              width={1000}
-              height={1000}
-              className="w-full border border-dashed border-accent rounded"
-            />
-          </div>
+          <p className="font-share text-white/35 text-xs tracking-[0.15em]">
+            Click any card to explore the full story &amp; screenshots.
+          </p>
         </div>
+
+        <ProjectSection />
       </section>
 
-      {/* Contact Information Section */}
-      <section className="relative h-screen w-full  ">
-        <div className="absolute inset-0 w-full h-full  opacity-25">
+      {/* ════════════════════════════════
+          CONTACT SECTION
+      ════════════════════════════════ */}
+      <section
+        id="contact"
+        className="relative min-h-screen w-full overflow-hidden"
+      >
+        {/* DotGrid background */}
+        <div className="absolute inset-0 opacity-20">
           <DotGrid
             dotSize={5}
             gap={15}
@@ -254,33 +248,100 @@ export default function Home() {
             returnDuration={1.5}
           />
         </div>
-        <div className=" top-0 p-6 text-white relative z-10 flex justify-around items-center  min-h-screen h-full w-full  ">
-          <div className="z-50 flex flex-col gap-4">
+
+        {/* Accent top glow */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 40% at 50% 0%, rgba(251,37,118,0.08) 0%, transparent 70%)",
+          }}
+        />
+
+        <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 py-24 flex flex-col lg:flex-row gap-14 items-start min-h-screen">
+          {/* Left — info */}
+          <div className="flex flex-col gap-8 lg:w-1/2 text-white">
             <div>
-              <h1
-                className={`${bbhBartle.className} text-base flex justify-center items-center `}
-              >
-                <strong className="text-2xl">#</strong>Contact Section
-              </h1>
-              <p className={`${shareTech.className}`}>
-                Got a project in mind? Lets build something awesome together. Im
-                always happy to chat about web development, new tech, or just
-                say hi
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-accent text-3xl font-black leading-none">
+                  #
+                </span>
+                <h2 className="font-bartle text-3xl text-white">
+                  Get In Touch
+                </h2>
+              </div>
+              <p className="font-share text-white/50 text-sm leading-relaxed max-w-sm">
+                Got a project in mind? Let&apos;s build something awesome
+                together. I&apos;m always happy to chat about web development,
+                new tech, or just say hi.
               </p>
             </div>
-            <div className="grid md:grid-cols-4 gap-6 md:gap-2 w-full ">
-              <a href="mailto:coderjackmyanmar@gmail.com" className="flex items-center justify-center p-4 md:p-0 gap-2 md:row-span-2 md:col-span-3 w-full backdrop-blur-sm btn-box">
-                <MdEmail className="size-6 md:size-10  text-accent" />
-                <h1 className={`${shareTech.className}`}>
-                  coderjackmyanmar@gmail.com
-                </h1>
+
+            <div className="flex flex-col gap-3">
+              <a
+                href="mailto:coderjackmyanmar@gmail.com"
+                className="group flex items-center gap-4 p-4 rounded-xl border border-white/8 hover:border-accent/50 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 backdrop-blur-sm"
+              >
+                <div className="p-2.5 rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors">
+                  <MdEmail className="size-5 text-accent" />
+                </div>
+                <div>
+                  <p className="font-share text-xs text-white/35 tracking-[0.2em] uppercase mb-0.5">
+                    Email
+                  </p>
+                  <p className="text-white text-sm group-hover:text-accent transition-colors">
+                    coderjackmyanmar@gmail.com
+                  </p>
+                </div>
               </a>
-              <a href="https://github.com/ThantThureinHtut" className="flex items-center justify-center p-4 col-span-1 gap-2 backdrop-blur-sm btn-box">
-                <FaGithub className="size-6 text-white" />
+
+              <a
+                href="https://github.com/ThantThureinHtut"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 p-4 rounded-xl border border-white/8 hover:border-accent/50 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 backdrop-blur-sm"
+              >
+                <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors">
+                  <FaGithub className="size-5 text-white" />
+                </div>
+                <div>
+                  <p className="font-share text-xs text-white/35 tracking-[0.2em] uppercase mb-0.5">
+                    GitHub
+                  </p>
+                  <p className="text-white text-sm group-hover:text-accent transition-colors">
+                    ThantThureinHtut
+                  </p>
+                </div>
               </a>
-              <a href="https://www.linkedin.com/in/thant-thurein-htut-42b02a350/" className="flex items-center justify-center p-4 col-span-1 gap-2 bg-blue-500 btn-box">
-                <FaLinkedin className="size-6  text-white" />
+
+              <a
+                href="https://www.linkedin.com/in/thant-thurein-htut-42b02a350/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 p-4 rounded-xl border border-white/8 hover:border-blue-400/40 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 backdrop-blur-sm"
+              >
+                <div className="p-2.5 rounded-lg bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors">
+                  <FaLinkedin className="size-5 text-blue-400" />
+                </div>
+                <div>
+                  <p className="font-share text-xs text-white/35 tracking-[0.2em] uppercase mb-0.5">
+                    LinkedIn
+                  </p>
+                  <p className="text-white text-sm group-hover:text-blue-400 transition-colors">
+                    Thant Thurein Htut
+                  </p>
+                </div>
               </a>
+            </div>
+          </div>
+
+          {/* Right — email form */}
+          <div className="lg:w-1/2 w-full">
+            <div className="p-6 md:p-8 rounded-2xl border border-white/8 bg-white/[0.02] backdrop-blur-sm shadow-[0_0_60px_rgba(0,0,0,0.5)]">
+              <h3 className="font-bartle text-xl text-white mb-6">
+                Send a Message
+              </h3>
+              <ContactForm />
             </div>
           </div>
         </div>
