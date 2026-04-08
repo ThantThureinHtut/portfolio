@@ -46,7 +46,8 @@ export default function Home() {
         </div>
 
         {/* Accent radial glow */}
-        <div className="absolute inset-0 pointer-events-none"
+        <div
+          className="absolute inset-0 pointer-events-none"
           style={{
             background:
               "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(251,37,118,0.12) 0%, transparent 70%)",
@@ -54,10 +55,15 @@ export default function Home() {
         />
 
         <div className="relative z-10 flex items-center justify-center min-h-screen pt-14 px-6 md:px-12">
-          <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-between gap-12">
+          <div className="w-full max-w-6xl  flex flex-col gap-12">
+            {/* ── Right: avatar ── */}
 
             {/* ── Left: text ── */}
-            <div className="flex flex-col gap-5 text-center md:text-left md:flex-1">
+            <div className="flex flex-col justify-around items-center gap-5 text-center ">
+              <div className="flex justify-center">
+                <MyPhotoAvatar />
+              </div>
+
               <p className="font-share text-white/40 tracking-[0.25em] text-xs uppercase">
                 Hi, I&apos;m
               </p>
@@ -72,7 +78,7 @@ export default function Home() {
               </div>
 
               {/* Rotating tagline */}
-              <div className="flex flex-wrap justify-center md:justify-start items-center gap-2 text-sm sm:text-base text-white font-share">
+              <div className="flex justify-center  gap-2 text-sm sm:text-base text-white font-share">
                 <span>Building,</span>
                 <RotatingText
                   texts={["Fast", "Scalable", "Modern"]}
@@ -93,7 +99,7 @@ export default function Home() {
                 on clean code, performance, and real-world solutions.
               </p>
 
-              <div className="flex gap-3 justify-center md:justify-start mt-1">
+              <div className="flex gap-3 justify-center mt-1">
                 <a
                   href="#project"
                   className="px-5 py-2.5 bg-accent text-white text-xs font-bold rounded btn-box hover:bg-accent/80 transition-all duration-300 font-share tracking-widest uppercase"
@@ -107,11 +113,6 @@ export default function Home() {
                   Contact
                 </a>
               </div>
-            </div>
-
-            {/* ── Right: avatar ── */}
-            <div className="flex items-center justify-center md:flex-shrink-0">
-              <MyPhotoAvatar />
             </div>
           </div>
 
@@ -133,14 +134,16 @@ export default function Home() {
         <div className="flex flex-col gap-8 w-full md:w-1/2 max-w-lg">
           {/* Section heading */}
           <div className="flex items-center gap-3">
-            <span className="text-accent text-3xl font-black leading-none">#</span>
+            <span className="text-accent text-3xl font-black leading-none">
+              #
+            </span>
             <h2 className="font-bartle text-3xl text-white">About Me</h2>
             <div className="flex-1 h-px bg-linear-to-r from-accent/50 to-transparent" />
           </div>
 
           <p className="text-white/65 text-sm md:text-base leading-relaxed">
-            I&apos;m <strong>Jack</strong> — a full-stack developer who turns ideas
-            into fast, functional web apps. I specialise in{" "}
+            I&apos;m <strong>Jack</strong> — a full-stack developer who turns
+            ideas into fast, functional web apps. I specialise in{" "}
             <strong>Laravel</strong>, <strong>React</strong>,{" "}
             <strong>Vue</strong>, and <strong>Tailwind CSS</strong>, with a
             focus on clean code, real-world impact, and constantly levelling up.
@@ -215,7 +218,9 @@ export default function Home() {
       >
         <div>
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-accent text-3xl font-black leading-none">#</span>
+            <span className="text-accent text-3xl font-black leading-none">
+              #
+            </span>
             <h2 className="font-bartle text-3xl text-white">Projects</h2>
             <div className="flex-1 h-px bg-linear-to-r from-accent/50 to-transparent" />
           </div>
