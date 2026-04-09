@@ -6,7 +6,7 @@ export default function MyPhotoAvatar() {
         src="https://avatars.githubusercontent.com/u/119115304?v=4"
         alt="Profile Picture"
         fill
-        loading="eager"
+        priority
         sizes="400px"
         className="object-cover object-center"
       />

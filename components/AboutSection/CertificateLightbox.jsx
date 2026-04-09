@@ -3,22 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
 
-const certificates = [
-  {
-    title: "Vue + Laravel",
-    issuer: "Code Lab",
-    tag: "Vue + Laravel",
-    src: "/certificate/Thant Thurein Htut Vue JS Certificate.jpg",
-  },
-  {
-    title: "Web Design",
-    issuer: "Code Lab",
-    tag: "Web Design",
-    src: "/certificate/Thant Thurein Htut Web Design Certificate.jpg",
-  },
-];
-
-export default function CertificateLightbox() {
+export default function CertificateLightbox({ certificates }) {
   const [selected, setSelected] = useState(null);
 
   return (
@@ -35,6 +20,7 @@ export default function CertificateLightbox() {
               src={cert.src}
               alt={cert.title}
               fill
+              sizes="160px"
               className="object-cover group-hover:scale-110 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-2">
@@ -60,14 +46,13 @@ export default function CertificateLightbox() {
             className="relative w-full max-w-3xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={() => setSelected(null)}
-              className="absolute -top-12 right-0 flex items-center gap-2 text-white/60 hover:text-accent transition-colors text-sm"
-            >
-              <X size={16} />
-              Close
-            </button>
-            <div className="border border-accent/50 rounded-xl overflow-hidden shadow-[0_0_60px_rgba(251,37,118,0.2)]">
+            <div className="border border-accent/50 rounded-xl overflow-hidden shadow-[0_0_60px_rgba(251,37,118,0.2)] relative">
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute top-3 right-3 z-10 flex items-center justify-center size-8 rounded-full bg-black/60 border border-white/10 text-white/60 hover:border-accent hover:text-accent transition-all duration-200 backdrop-blur-sm"
+              >
+                <X size={16} />
+              </button>
               <Image
                 src={selected.src}
                 alt={selected.title}

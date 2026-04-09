@@ -5,14 +5,16 @@ import RotatingText from "@/components/RotatingText";
 import PixelTransition from "@/components/AboutSection/PixelTransition";
 import DotGrid from "@/components/DotGrid";
 import Squares from "@/components/Squares";
-import CertificateLightbox from "@/components/CertificateLightbox";
-import ProjectSection from "@/components/ProjectSection";
+import ProjectGridSkeleton from "@/components/ProjectSection/ProjectGridSkeleton";
 import ContactForm from "@/components/ContactForm";
 import Image from "next/image";
 import { MdEmail } from "react-icons/md";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiArrowSmallDown } from "react-icons/hi2";
-
+import { Suspense } from "react";
+import CertificateSkeleton from "@/components/AboutSection/CertificateSkeleton";
+import ProjectSection from "@/components/ProjectSection/ProjectSection";
+import CertificateSection from "@/components/AboutSection/CertificateSection";
 const skills = [
   "Laravel 11",
   "React",
@@ -24,7 +26,7 @@ const skills = [
   "WebSockets",
 ];
 
-export default function Home() {
+export default function asyHome() {
   return (
     <div>
       {/* ════════════════════════════════
@@ -171,7 +173,9 @@ export default function Home() {
             <p className="font-share text-xs text-white/35 tracking-[0.2em] uppercase mb-3">
               Certificates — click to view
             </p>
-            <CertificateLightbox />
+            <Suspense fallback={<CertificateSkeleton />}>
+              <CertificateSection/>
+            </Suspense>
           </div>
         </div>
 
@@ -184,7 +188,7 @@ export default function Home() {
                 alt=""
                 width={250}
                 height={250}
-                loading="eager"
+                loading="lazy"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             }
@@ -228,8 +232,9 @@ export default function Home() {
             Click any card to explore the full story &amp; screenshots.
           </p>
         </div>
-
-        <ProjectSection />
+        <Suspense fallback={<ProjectGridSkeleton />}>
+          <ProjectSection />
+        </Suspense>
       </section>
 
       {/* ════════════════════════════════
