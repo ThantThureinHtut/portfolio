@@ -180,3 +180,19 @@
     scrollbar-width: none;  /* Firefox */
   }
 }
+
+@layer base {
+  ::-webkit-scrollbar {
+    width: 15px; /* Width of the scrollbar */
+    
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-sidebar-primary; /* Use Tailwind colors for the track */
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-accent  border-2 ; /* Styles for the draggable part */
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent opacity-80; /* Hover state for thumb */
+  }
+}

@@ -80,7 +80,7 @@ export default function asyHome() {
               </div>
 
               {/* Rotating tagline */}
-              <div className="flex justify-center  gap-2 text-sm sm:text-base text-white font-share">
+              <div className="flex justify-center items-center  gap-2 text-sm sm:text-base text-white font-share">
                 <span>Building,</span>
                 <RotatingText
                   texts={["Fast", "Scalable", "Modern"]}
@@ -104,7 +104,7 @@ export default function asyHome() {
               <div className="flex gap-3 justify-center mt-1">
                 <a
                   href="#project"
-                  className="px-5 py-2.5 bg-accent text-white text-xs font-bold rounded btn-box hover:bg-accent/80 transition-all duration-300 font-share tracking-widest uppercase"
+                  className="px-5 py-2.5 bg-accent text-white text-xs font-bold rounded  hover:bg-accent/80 transition-all duration-300 font-share tracking-widest uppercase"
                 >
                   Projects
                 </a>
@@ -115,12 +115,11 @@ export default function asyHome() {
                   Contact
                 </a>
               </div>
+              {/* Scroll indicator */}
+              <div className=" flex flex-col items-center gap-1 text-white/25 animate-bounce">
+                <HiArrowSmallDown size={20} />
+              </div>
             </div>
-          </div>
-
-          {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/25 animate-bounce">
-            <HiArrowSmallDown size={20} />
           </div>
         </div>
       </section>
@@ -174,7 +173,7 @@ export default function asyHome() {
               Certificates — click to view
             </p>
             <Suspense fallback={<CertificateSkeleton />}>
-              <CertificateSection/>
+              <CertificateSection />
             </Suspense>
           </div>
         </div>

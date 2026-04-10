@@ -16,7 +16,7 @@ gsap.registerPlugin(useGSAP);
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-primary">
+      <body className="bg-primary ">
         <NavSlideBar />
         {children}
       </body>
